@@ -1,0 +1,150 @@
+// =======================
+// VARIABLES
+// =======================
+
+$primary-color: #0d6efd;
+$secondary-color: #212529;
+$accent-color: #198754;
+$text-color: #333;
+
+$font-main: 'Segoe UI', sans-serif;
+
+$font-small: 14px;
+$font-medium: 18px;
+$font-large: 28px;
+
+
+// =======================
+// HERENCIA (PLACEHOLDER)
+// =======================
+
+%card-base {
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+// =======================
+// BASE
+// =======================
+
+body {
+  font-family: $font-main;
+  color: $text-color;
+  background-color: #f8f9fa;
+}
+
+
+// =======================
+// NAVBAR
+// =======================
+
+.navbar {
+  background-color: $secondary-color;
+
+  .navbar-brand {
+    font-size: $font-medium;
+    font-weight: bold;
+  }
+
+  .btn {
+    border-radius: 5px;
+  }
+}
+
+
+// =======================
+// HERO / JUMBOTRON
+// =======================
+
+.hero {
+  background-color: $primary-color;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+
+  h1 {
+    font-size: $font-large;
+  }
+
+  p {
+    font-size: $font-medium;
+  }
+}
+
+
+// =======================
+// CARDS (FEATURES)
+// =======================
+
+.card {
+  @extend %card-base;
+
+  h5 {
+    font-size: $font-medium;
+  }
+
+  p {
+    font-size: $font-small;
+  }
+}
+
+
+// =======================
+// DASHBOARD
+// =======================
+
+.dashboard {
+
+  .kpi {
+    @extend %card-base;
+    text-align: center;
+
+    h3 {
+      color: $primary-color;
+    }
+  }
+
+  table {
+    font-size: $font-small;
+  }
+}
+
+
+// =======================
+// FORMULARIO
+// =======================
+
+.form-section {
+
+  .form-control {
+    border-radius: 5px;
+  }
+
+  button {
+    background-color: $primary-color;
+    border: none;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+
+// =======================
+// FOOTER
+// =======================
+
+footer {
+  background-color: $secondary-color;
+  color: white;
+  text-align: center;
+  padding: 15px;
+
+  p {
+    margin: 0;
+    font-size: $font-small;
+  }
+}
