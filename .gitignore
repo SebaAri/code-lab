@@ -1,0 +1,14 @@
+# C#
+.vs/
+bin/
+obj/
+
+# Java
+build/
+nbproject/private/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
