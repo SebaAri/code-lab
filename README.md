@@ -10,12 +10,11 @@ Repositorio personal donde organizo mi aprendizaje en distintas áreas relaciona
 code-lab/
 ├───Base-De-Datos
 │   ├───MYSQL
-│   │   ├───EjerciciosSQL          
-│   │   │          
+│   │   ├───EjerciciosSQL
 │   │   └───EjerciciosSQL1
-│   └───SQL
+│   └───PostgreSQL
 ├───Data-Science
-│   └───WEBSCRAPING
+│   └───Webscraping
 ├───Desarrollo-Web
 │   └───HTML5
 │       ├───Front-End-Buscador
@@ -25,30 +24,13 @@ code-lab/
 │   ├───Basic-English-A1
 │   ├───English-A2
 │   └───English-B1
-└───Programming
+└───Mini-Projects
     ├───C#
-    │   ├───arreglos.cs
-    │   ├───Calculadora.cs
-    │   ├───Ciclos
-    │   ├───OperadoresAritméticos
-    │   └───Tipos_datos.cs
     ├───JAVA
-    │   ├───Actividad_array
-    │   ├───calculadora
-    │   ├───Ciclo_Do_While
-    │   ├───Ciclo_For
-    │   ├───Ciclo_While
-    │   ├───Cuadrilátero
-    │   ├───Ejercicio
-    │   ├───herencia
-    │   └───Iniciales
     ├───PSEINT
     ├───PYTHON
     └───VBA
-        └───Macros
 ```
-
----
 
 ## 🚀 Áreas de estudio
 
