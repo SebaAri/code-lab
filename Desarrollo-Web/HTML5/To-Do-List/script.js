@@ -1,9 +1,5 @@
 const btn = document.querySelector("button");
 
-function cambiarColor() {
-  const backcolor = "rgb(0, 252, 0)";
-  btn.style.backgroundColor = backcolor;
-}
 function mostrarTexto() {
 
   const input = document.getElementById("fname");
