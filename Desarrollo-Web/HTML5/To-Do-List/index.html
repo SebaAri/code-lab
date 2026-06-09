@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do list</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
 
@@ -18,15 +18,80 @@
     <ol id="resultado"></ol>
 
     <hr /> <h3>Tareas guardadas</h3>
-    <button type="text" id="eliminar" class="btn">Eliminar todas las tareas</button>
     <ol id="lista-guardadas"></ol>
 
     <script>
-      $(document).ready(function(){
-            $("label").css("color", "blue");
-            /*$("input").focus();*/
+   $(document).ready(function() {
+    const btn = $("button");
+    $("input").focus();
+    // Ejecutar al cargar la página para mostrar lo que ya estaba guardado
+    mostrarTareasGuardadas();
+
+    // Asignar eventos al botón principal
+
+    btn.click(mostrarTexto);
+
+    function mostrarTexto() {
+        const input = $("#fname");
+        if (input.val().trim() === "") return;
+
+        const resultado = $("#resultado");
+        const li = $("<li>").html(`
+            <span>${input.val()}</span>
+            <button class="editar">Editar</button>
+            <button class="eliminar">Eliminar</button>
+            <button class="guardar">Guardar</button>
+        `);
+
+        resultado.append(li);
+
+        // Evento Guardar
+        li.find(".guardar").click(function() {
+            const tareaTexto = li.find("span").text();
+            const tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+
+            if (!tareas.includes(tareaTexto)) {
+                tareas.push(tareaTexto);
+                localStorage.setItem("tareas", JSON.stringify(tareas));
+                alert("Tarea guardada en localStorage");
+                li.remove()
+                mostrarTareasGuardadas();
+            
+             
+            }
         });
 
+        // Evento Editar
+        li.find(".editar").click(function() {
+            const tarea = li.find("span");
+            const nuevoTexto = prompt("Ingrese el nuevo texto de la tarea:");
+            if (nuevoTexto) {
+                tarea.text(nuevoTexto);
+            }
+        });
+
+      /*  // Evento Eliminar (De la pantalla)
+        li.find(".eliminar").click(function() {
+            const texto = prompt("Desea eliminar esta tarea? si/no");
+            if (texto === "si") {
+                li.remove();
+            }
+        });*/
+
+        input.val(""); // Limpiar input
+    }
+
+    function mostrarTareasGuardadas() {
+        const listaGuardadas = $("#lista-guardadas");
+        listaGuardadas.empty();
+        const tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+
+        $.each(tareas, function(index, tarea) {
+            $("<li>").text(tarea).appendTo(listaGuardadas);
+        });
+    }
+});
+    
       
     </script>
   </body>
