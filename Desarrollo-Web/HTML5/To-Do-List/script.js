@@ -13,7 +13,7 @@ function mostrarTexto() {
     <span>${input.value}</span>
     <button class="editar">Editar</button>
     <button class="eliminar">Eliminar</button>
-    <button class="guardar">Guardar</button>
+    <button class="guardar">Guardar Tarea</button>
     
   `;
 
@@ -22,14 +22,18 @@ function mostrarTexto() {
   const guardarBtn = li.querySelector(".guardar");
   guardarBtn.addEventListener("click", () => {
     const tareaTexto = li.querySelector("span").textContent;
-    const tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+    const tarea = JSON.parse(localStorage.getItem("tarea")) || [];
 
-    if (!tareas.includes(tareaTexto)) {
-      tareas.push(tareaTexto);
-      localStorage.setItem("tareas", JSON.stringify(tareas));
+    if (!tarea.includes(tareaTexto)) {
+      tarea.push(tareaTexto);
+      localStorage.setItem("tarea", JSON.stringify(tarea));
       alert("Tarea guardada en localStorage");
+      
       mostrarTareasGuardadas();
     }
+    
+
+    
 
 });
 
@@ -49,27 +53,36 @@ function mostrarTexto() {
     const Texto = prompt("Desea eliminar esta tarea? si/no");
     if (Texto === "si") {
       li.remove();
+      
     }
   });
 
   input.value = "";
 }
+
+ 
+
+
 function mostrarTareasGuardadas() {
     const listaGuardadas = document.getElementById("lista-guardadas");
 
     listaGuardadas.innerHTML = "";
 
-    const tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+    const tarea = JSON.parse(localStorage.getItem("tarea")) || [];
 
-    tareas.forEach(tarea => {
+    tarea.forEach(tarea => {
         const li = document.createElement("li");
         li.textContent = tarea;
         listaGuardadas.appendChild(li);
+       
+     
+      
     });
+  
 }
 
 
 
-btn.addEventListener("click", cambiarColor);
+
 btn.addEventListener("click", mostrarTexto);
 
