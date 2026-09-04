@@ -1,11 +1,13 @@
 package peluqueriacanina.igu;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import peluqueriacanina.logica.Controladora;
 import javax.swing.table.DefaultTableModel;
 import peluqueriacanina.logica.Mascota;
 
 public class VerDataos extends javax.swing.JFrame {
-    Controladora control;
+    Controladora control = null;
 
    
       public VerDataos() {
@@ -24,7 +26,7 @@ public class VerDataos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaMascotas = new javax.swing.JTable();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
@@ -40,7 +42,7 @@ public class VerDataos extends javax.swing.JFrame {
 
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMascotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -51,13 +53,15 @@ public class VerDataos extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaMascotas);
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peluqueriacanina/igu/Editar.png"))); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(this::btnEditarActionPerformed);
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/peluqueriacanina/igu/Eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -129,7 +133,52 @@ public class VerDataos extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cargarTabla();
     }//GEN-LAST:event_formWindowOpened
-private void cargarTabla() {
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+          if (tablaMascotas.getRowCount() > 0) {
+   if (tablaMascotas.getSelectedRow() != -1) {
+           int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0)));
+      ModificarDatos pantallaModif = new ModificarDatos(num_cliente);
+                pantallaModif.setVisible(true);
+                pantallaModif.setLocationRelativeTo(null);
+                this.dispose();
+   }
+   else {
+         mostrarMensaje ("No seleccionó ninguna mascota", "Error", "Error al eliminar");
+   }
+        }
+        else {
+            mostrarMensaje ("No hay nada para eliminar en la tabla", "Error", "Error al eliminar");
+        }
+          
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (tablaMascotas.getRowCount() > 0) {
+   if (tablaMascotas.getSelectedRow() != -1) {
+    int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0)));
+       try {
+           control.borrarMascota(num_cliente);
+       } catch (Exception ex) {
+           System.getLogger(VerDataos.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+       }
+    
+            //aviso al usuario que borró correctamente
+        mostrarMensaje ("Mascota eliminada correctamente", "Info", "Borrado de Mascota");
+        cargarTabla();
+    }
+    else {
+         mostrarMensaje ("No seleccionó ninguna mascota", "Error", "Error al eliminar");
+   }
+        }
+        else {
+            mostrarMensaje ("No hay nada para eliminar en la tabla", "Error", "Error al eliminar");
+        }
+
+                        
+                
+    }//GEN-LAST:event_btnEliminarActionPerformed
+public void cargarTabla() {
     // 1. Declarar e instanciar el modelo de tabla
     DefaultTableModel modeloTabla = new DefaultTableModel() {
         @Override
@@ -139,12 +188,48 @@ private void cargarTabla() {
     }; // <-- Aquí termina la definición de la clase anónima (línea 137)
 
     // 2. Definir los nombres de las columnas
-    String titulos[] = {"Num", "Nombre", "Color", "Raza", "Alergico", "At. Esp.", "Dueño", "Celular"};
-    modeloTabla.setColumnIdentifiers(titulos);
+    // 2. Definir los nombres de las columnas
+String titulos[] = {"Num", "Nombre", "Color", "Raza", "Alergico", "At. Esp.", "Dueño", "Celular"};
+modeloTabla.setColumnIdentifiers(titulos);
 
-    // 3. Asignar el modelo a la JTable
-    jTable1.setModel(modeloTabla);
-    List <Mascota> listaMascotas = control.TraerMascotas();
+// 3. Asignar el modelo a la JTable
+tablaMascotas.setModel(modeloTabla);
+List<Mascota> listaMascotas = control.TraerMascotas();
+
+if (listaMascotas != null) {
+    for (Mascota masco : listaMascotas) {
+        Object[] objeto = {
+            masco.getNum_cliente(), 
+            masco.getNombre(),
+            masco.getColor(), 
+            masco.getRaza(), 
+            masco.getAlergico(), 
+            masco.getAtencion_especial(),
+            masco.getUnDuenio().getNombre(), 
+            masco.getUnDuenio().getCel_duenio()
+                
+               /* modeloTabla.addRow(objeto);*/
+        };
+        ((DefaultTableModel) modeloTabla).addRow(objeto);
+    }
+  /* tablaMascotas.setModel(modeloTabla); */
+        }
+    
+
+}
+
+public void mostrarMensaje (String mensaje, String tipo, String titulo) {
+    JOptionPane optionPane = new JOptionPane(mensaje);
+    if (tipo.equals("Info")) {
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+    }
+    else if (tipo.equals("Error")) {
+        optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+    }
+    JDialog dialog = optionPane.createDialog(titulo);
+    dialog.setAlwaysOnTop(true);
+    dialog.setVisible(true);
+
 }
  
 
@@ -155,7 +240,7 @@ private void cargarTabla() {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaMascotas;
     // End of variables declaration//GEN-END:variables
 
 }

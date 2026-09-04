@@ -99,6 +99,10 @@ public class Mascota implements Serializable {
     public void setUnDuenio(Duenio unDuenio) {
         this.unDuenio = unDuenio;
     }
+
+   public Duenio getDuenio() {
+    return unDuenio;
+}
     
     
     

@@ -59,6 +59,7 @@ public class ControladoraPersistencia {
     // ==========================
     public void borrarMascota(int id) throws Exception {
         mascotaJpa.destroy(id);
+        
     }
 
     public void borrarDuenio(int id) throws Exception {
@@ -72,4 +73,20 @@ public class ControladoraPersistencia {
     // 2. Crear la Mascota en la Base de Datos
     mascotaJpa.create(masco);
 }
+
+    public void modificarMascota(Mascota masco) {
+        try {
+            mascotaJpa.edit(masco);
+        } catch (Exception ex) {
+            System.getLogger(ControladoraPersistencia.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
+
+    public void modificarDuenio(Duenio dueno) {
+        try {
+            duenioJpa.edit(dueno);
+        } catch (Exception ex) {
+            System.getLogger(ControladoraPersistencia.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
 }
