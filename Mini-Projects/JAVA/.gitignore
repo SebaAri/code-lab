@@ -1,23 +1,21 @@
-```gitignore
-# Salidas de compilación de Ant
-build/
-bin/
-dist/
+# Salidas de compilación de Ant (en cualquier subcarpeta)
+**/build/
+**/bin/
+**/dist/
 
 # Archivos compilados individuales
-*.class
+**/*.class
 
-# Configuraciones de IDEs (Eclipse, NetBeans, IntelliJ)
-.idea/
-*.iml
-.settings/
-.classpath
-.project
-nbproject/private/
-nbproject/genfiles.properties
-nbproject/build-impl.xml
+# Configuraciones de IDEs
+**/.idea/
+**/*.iml
+**/.settings/
+**/.classpath
+**/.project
+**/nbproject/private/
+**/nbproject/genfiles.properties
 
 # Logs y SO
-*.log
-.DS_Store
-Thumbs.db
+**/*.log
+**/.DS_Store
+**/Thumbs.db
