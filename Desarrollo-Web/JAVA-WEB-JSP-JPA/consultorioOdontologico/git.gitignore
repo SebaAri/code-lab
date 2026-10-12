@@ -1,0 +1,57 @@
+# --- Maven / Gradle ---
+target/
+build/
+!.mvn/wrapper/maven-wrapper.jar
+
+# --- Archivos Compilados ---
+*.class
+*.war
+*.ear
+*.jar
+
+# --- IDEs ---
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.settings/
+.classpath
+.project
+bin/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+# --- Sistema Operativo ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs y Temporales ---
+*.log
+logs/
+*.tmp
+*.bak
+*.swp
+
+# --- Seguridad y Configuración Local ---
+# Descomenta estas líneas si tienes archivos con contraseñas reales
+# src/main/resources/META-INF/persistence.xml
+# src/main/resources/db.properties
+# *.env
+
+# --- Datos de Pacientes (Mock/Reales) ---
+# Si tienes una carpeta donde se suben radiografías o archivos de pacientes
+uploads/
+patient_files/
