@@ -70,4 +70,4 @@ Proyecto personal de práctica y desarrollo de habilidades en programación web.
 
 ## Estado del proyecto
 
-En desarrollo.
+Completado.
