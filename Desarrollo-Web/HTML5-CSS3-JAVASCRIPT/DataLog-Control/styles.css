@@ -1,0 +1,28 @@
+body {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+   margin: 0;
+   background-color:darkgrey;
+
+}
+h1 {
+    text-align: center;
+}
+main {
+    flex:1;
+   
+}
+footer {
+    margin-top: auto;
+}
+.btn.btn-primary{
+    margin-bottom: 20px;
+}
+
+.form-control{
+    margin-bottom: 20px;
+}
+.form-label2{
+    margin-top: 20px;
+}

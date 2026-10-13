@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datalog Control</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   <link rel="stylesheet" href="styles.css">
+   
+   </head>
+<body>
+    <header class="bg-primary text-white p-4 mb-4"> 
+      <div class="container">
+      <h1>PANEL DE CONTROL</h1>
+      <h3 class="mb-0 text-center">Datalog Control optimiza las operaciones de sus clientes 
+        mediante soluciones tecnológicas y metodologías de vanguardia.</h3>
+     </div>
+    </header>
+<main class="container" >
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="index.html">
+        <button class="btn btn-primary me-md-2" id="operaciones" type="button">Inicio</button>
+    </a>
+    </div>
+    <h1>Gestión de Datos:</h1>
+        <div class="row mb-3">
+            <label for="formGroupInput" class="formnueva"><b>Nueva Operación:</b></label>
+          
+          <a href="formulario.html">
+           
+            <button class="btn btn-primary mt-3" id="nuevaOperacion" type="button">Nueva Operación</button>
+          </a>
+          </div>
+      
+        </div>
+          <div class="row mb-3">
+            <label for="formGroupInput" class="form-label1 "><b>Buscar:</b></label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control w-50" id="formGroupExampleInput1" placeholder ="Buscar por Id o descripción">
+            <button class="btn btn-primary me-md-2" id="buscar" type="button">Buscar</button>
+          </div>
+          </div>
+          
+<div class="row mb-3">
+  <label for="autoSizingSelect" class="form-label1">
+      <b>Filtrar:</b>
+  </label>
+
+  <div class="col-auto">
+      <select class="form-select" id="autoSizingSelect">
+          <option value="todos" selected>Todos</option>
+          <option value="Procesada">Procesadas</option>
+          <option value="Pendiente">Pendientes</option>
+          <option value="Error">Error</option>
+      </select>
+  </div>
+
+  <div class="col-auto">
+      <button class="btn btn-primary" id="filtrar" type="button">
+          Filtrar
+      </button>
+  </div>
+</div>
+
+          <div class="row mb-3">
+          <h2>Lista de Operaciones:</h2>
+   
+          </div>
+          
+          <table class="table table-dark table-hover text-center">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+        
+            <tbody id="tablaOperaciones">
+                <!-- JavaScript generará las filas aquí -->
+            </tbody>
+        </table>
+               
+                            
+        
+</main>
+   <footer class="bg-dark text-white text-center p-3 mt-auto">
+    <div class="container">
+        <p class="mb-0">&copy;2026 Datalog Control todos los derechos reservados</p>
+    </div>
+   </footer>
+   <script src="js/datos.js"></script>
+<script src="js/operaciones.js"></script>
+</body>
+
+</html>

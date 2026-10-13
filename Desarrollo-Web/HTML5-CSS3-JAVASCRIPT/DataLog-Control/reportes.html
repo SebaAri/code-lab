@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datalog Control</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Incluir la librería html2pdf.js desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+   
+</head>
+<body>
+    <header class="bg-primary text-white p-4 mb-4"> 
+      <div class="container">
+        <h1>PANEL DE CONTROL</h1>
+        <h3 class="mb-0 text-center">Datalog Control optimiza las operaciones de sus clientes mediante soluciones tecnológicas y metodologías de vanguardia.</h3>
+     </div>
+    </header>
+
+<main class="container">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+        <a href="index.html" class="btn btn-primary me-md-2" id="inicio1">Inicio</a>
+        <!-- Botón interactivo para generar el PDF -->
+        <button class="btn btn-success me-md-2" id="genreportes" type="button">Generar Reportes (PDF)</button>
+    </div>
+    
+    <h1>Reportes:</h1>
+    
+    <!-- Contenedor envolvente ideal para que html2pdf capture toda la tabla con cabecera -->
+    <div id="areaReporte">
+
+<div class="row mb-4 text-center">
+  <div class="col-md-4 mb-2">
+      <div class="card p-3">
+          <h5>Total de operaciones</h5>
+          <h3 id="totalReporte">0</h3>
+      </div>
+  </div>
+
+  <div class="col-md-4 mb-2">
+      <div class="card p-3">
+          <h5>Procesadas</h5>
+          <h3 id="procesadasReporte">0</h3>
+      </div>
+  </div>
+
+  <div class="col-md-4 mb-2">
+      <div class="card p-3">
+          <h5>Pendientes</h5>
+          <h3 id="pendientesReporte">0</h3>
+      </div>
+  </div>
+
+  <div class="col-md-4 mb-2">
+      <div class="card p-3">
+          <h5>Errores</h5>
+          <h3 id="erroresReporte">0</h3>
+      </div>
+  </div>
+
+  <div class="col-md-4 mb-2">
+      <div class="card p-3">
+          <h5>Cantidad total</h5>
+          <h3 id="cantidadReporte">0</h3>
+      </div>
+  </div>
+</div>
+
+        <table class="table table-dark table-hover text-center">
+          <thead>
+              <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Descripción</th>
+              </tr>
+          </thead>
+          <tbody id="tablaOperaciones">
+              <!-- JavaScript generará las filas aquí -->
+          </tbody>
+      </table>
+    </div>
+
+    <!-- Modal de Bootstrap para previsualizar el PDF -->
+    <div class="modal fade" id="modalPdf" tabindex="-1" aria-labelledby="modalPdfLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalPdfLabel">Vista Previa del Reporte</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <!-- Iframe para mostrar el PDF generado en memoria -->
+            <iframe id="visorPdf" src="" width="100%" height="450px" style="border: none;"></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <a id="btnDescargarModal" href="#" download="reporte-operaciones.pdf" class="btn btn-primary">Descargar PDF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script> 
+ 
+function mostrarOperaciones() {
+    const tabla = document.getElementById("tablaOperaciones");
+    if (!tabla) return;
+
+    const operaciones = obtenerOperaciones();
+
+    tabla.innerHTML = "";
+
+    operaciones.forEach(function(operacion) {
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+            <th scope="row">${operacion.id}</th>
+            <td>${operacion.cantidad}</td>
+            <td>${operacion.fecha}</td>
+            <td>${operacion.estado}</td>
+            <td>${operacion.descripcion}</td>
+        `;
+
+        tabla.appendChild(fila);
+    });
+
+    document.getElementById("totalReporte").textContent =
+        operaciones.length;
+
+    document.getElementById("procesadasReporte").textContent =
+        operaciones.filter(function(operacion) {
+            return operacion.estado === "Procesada";
+        }).length;
+
+    document.getElementById("pendientesReporte").textContent =
+        operaciones.filter(function(operacion) {
+            return operacion.estado === "Pendiente";
+        }).length;
+
+    document.getElementById("erroresReporte").textContent =
+        operaciones.filter(function(operacion) {
+            return operacion.estado === "Error";
+        }).length;
+
+    const cantidadTotal = operaciones.reduce(function(total, operacion) {
+        return total + Number(operacion.cantidad || 0);
+    }, 0);
+
+    document.getElementById("cantidadReporte").textContent =
+        cantidadTotal;
+}
+
+window.addEventListener("DOMContentLoaded", function() {
+    mostrarOperaciones();
+
+    document.getElementById("genreportes").addEventListener(
+        "click",
+        function() {
+            const elemento = document.getElementById("areaReporte");
+
+            const opciones = {
+                margin: 10,
+                filename: "reporte-operaciones.pdf",
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: {
+                    unit: "mm",
+                    format: "a4",
+                    orientation: "portrait"
+                }
+            };
+
+            html2pdf()
+                .set(opciones)
+                .from(elemento)
+                .outputPdf("datauristring")
+                .then(function(pdfDataUri) {
+                    document.getElementById("visorPdf").src = pdfDataUri;
+                    document.getElementById("btnDescargarModal").href =
+                        pdfDataUri;
+
+                    const modalElemento =
+                        document.getElementById("modalPdf");
+
+                    const modal = new bootstrap.Modal(modalElemento);
+                    modal.show();
+                });
+        }
+    );
+});
+
+  </script> 
+</main>
+
+   <footer class="bg-dark text-white text-center p-3 mt-auto">
+    <div class="container">
+        <p class="mb-0">&copy;2026 Datalog Control todos los derechos reservados</p>
+    </div>
+   </footer>
+
+   <!-- Bootstrap JS (¡Obligatorio para que funcionen los modales!) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+ 
+   <script src="js/datos.js"></script>
+   <script src="js/validaciones.js"></script>
+</body>
+</html>
