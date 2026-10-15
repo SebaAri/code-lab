@@ -29,12 +29,7 @@ if(usuario==null) {
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-duotone fa-solid fa-bars"></i>
-                    <span>Menú</span></a>
-            </li>
+         
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -54,7 +49,7 @@ if(usuario==null) {
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="buttons.html">Ver Odontólogos</a>
+                        <a class="collapse-item" href="SvOdontologos">Ver Odontólogos</a>
                         <a class="collapse-item" href="altaOdontologo.jsp">Alta Odontólogos</a>
                     </div>
                 </div>
@@ -71,8 +66,8 @@ if(usuario==null) {
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Ver Pacientes</a>
-                        <a class="collapse-item" href="utilities-border.html">Alta Pacientes</a>
+                        <a class="collapse-item" href="SvPacientes">Ver Pacientes</a>
+                        <a class="collapse-item" href="altaPacientes.jsp">Alta Pacientes</a>
                         
                     </div>
                 </div>

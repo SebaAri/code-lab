@@ -26,10 +26,10 @@ public UsuarioJpaController(EntityManagerFactory emf) {
 
     public void edit(Usuario usuario) throws Exception {
         
-           System.out.println("========================================");
+     /*      System.out.println("========================================");
     System.out.println(">>> [JPA EDIT] ID del usuario a editar: " + usuario.getId_Usuario());
     System.out.println(">>> [JPA EDIT] Nombre: " + usuario.getNombreUsuario());
-    System.out.println("========================================");
+    System.out.println("========================================");*/
         
         EntityManager em = null;
         try { em = getEntityManager(); em.getTransaction().begin(); em.merge(usuario); em.getTransaction().commit(); } 

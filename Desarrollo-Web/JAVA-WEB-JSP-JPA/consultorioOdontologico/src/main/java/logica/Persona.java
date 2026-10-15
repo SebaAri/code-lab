@@ -101,6 +101,10 @@ public class Persona implements Serializable {
     public void setFecha_nacim(Date fecha_nacim) {
         this.fecha_nacim = fecha_nacim;
     }
+
+   public void setFechanac(Date fecha) {
+    this.fecha_nacim = fecha;
+}
     
     
 }

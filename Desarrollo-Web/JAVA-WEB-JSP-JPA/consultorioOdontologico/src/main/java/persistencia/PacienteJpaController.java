@@ -4,7 +4,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -14,9 +13,9 @@ import persistencia.exceptions.NonexistentEntityException;
 public class PacienteJpaController {
     private EntityManagerFactory emf;
 
-  public PacienteJpaController(EntityManagerFactory emf) { 
-        this.emf = Persistence.createEntityManagerFactory("Odontologo_UP"); 
-    }
+ public PacienteJpaController(EntityManagerFactory emf) {
+    this.emf = emf;
+}
 
     public void create(Paciente paciente) {
         EntityManager em = null;
@@ -61,7 +60,6 @@ public class PacienteJpaController {
     }
 
     public List<Paciente> findPacienteEntities() { return findPacienteEntities(true, -1, -1); }
-    public List<Paciente> findPacienteEntities(int maxResults, int firstResult) { return findPacienteEntities(false, maxResults, firstResult); }
 
     private List<Paciente> findPacienteEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
@@ -85,7 +83,7 @@ public class PacienteJpaController {
         } finally { em.close(); }
     }
 
-    private EntityManager getEntityManager() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  private EntityManager getEntityManager() {
+    return emf.createEntityManager();
+}
 }

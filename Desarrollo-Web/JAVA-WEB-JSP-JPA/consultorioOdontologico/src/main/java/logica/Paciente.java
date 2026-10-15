@@ -72,6 +72,11 @@ public class Paciente extends Persona{
         this.ListaTurno = ListaTurno;
     }
 
+@Override
+public void setFechanac(Date fecha) {
+    super.setFechanac(fecha);
+}
+
   
 
     

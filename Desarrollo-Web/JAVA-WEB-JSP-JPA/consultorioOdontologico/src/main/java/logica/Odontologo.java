@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 @Entity
 public class Odontologo extends Persona{
-   /* private int id_odontologo;*/
+   
     private String especialidad;
     @OneToMany(mappedBy="odonto")
     private List <Turno> ListaTurno;
@@ -20,24 +20,24 @@ public class Odontologo extends Persona{
     public Odontologo() {
     }
 
-    public Odontologo(String especialidad, List<Turno> ListaTurno, Usuario Unusuario, Horario Unhorario, int id, String dni, String nombre, String apellido, String telefono, String direccion, Date fecha_nacim) {
-        super(id, dni, nombre, apellido, telefono, direccion, fecha_nacim);
-        this.especialidad = especialidad;
-        this.ListaTurno = ListaTurno;
-        this.Unusuario = Unusuario;
-        this.Unhorario = Unhorario;
-    }
+   
+public Odontologo(String especialidad, List<Turno> ListaTurno,
+        Usuario Unusuario, Horario Unhorario,
+        int id, String dni, String nombre, String apellido,
+        String telefono, String direccion, Date fecha_nacim) {
+
+    super(id, dni, nombre, apellido, telefono, direccion, fecha_nacim);
+
+    this.especialidad = especialidad;
+    this.ListaTurno = ListaTurno;
+    this.Unusuario = Unusuario;
+    this.Unhorario = Unhorario;
+}
 
 
- 
 
-   /* public int getId_odontologo() {
-        return id_odontologo;
-    }
 
-    public void setId_odontologo(int id_odontologo) {
-        this.id_odontologo = id_odontologo;
-    }*/
+  
 
     public String getEspecialidad() {
         return especialidad;
@@ -69,6 +69,14 @@ public class Odontologo extends Persona{
 
     public void setUnhorario(Horario Unhorario) {
         this.Unhorario = Unhorario;
+    }
+
+    public int getId_odontologo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setFechanac(Date fecha) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     
