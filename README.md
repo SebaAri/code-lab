@@ -13,13 +13,17 @@ code-lab/
 │   │   ├───EjerciciosSQL
 │   │   └───EjerciciosSQL1
 │   └───PostgreSQL
-├───Data-Science
+───Data-Science
 │   └───Webscraping
 ├───Desarrollo-Web
-│   └───HTML5
-│       ├───Front-End-Buscador
-│       │   └───img
-│       └───SitioWebResponsivo-Bootstrap-Sass
+│   ├───HTML5-CSS3-JAVASCRIPT
+│   │   ├───DataLog-Control
+│   │   ├───Front-End-Buscador
+│   │   ├───Página-De-Productos
+│   │   ├───SitioWebResponsivo-Bootstrap-Sass
+│   │   └───To-Do-List
+│   └───JAVA-WEB-JSP-JPA
+│       └───consultorioOdontologico
 ├───English
 │   ├───Basic-English-A1
 │   ├───English-A2
@@ -27,6 +31,8 @@ code-lab/
 └───Mini-Projects
     ├───C#
     ├───JAVA
+    │   ├───PeluqueriaCanina
+    │   ───SorteoSupermercado
     ├───PSEINT
     ├───PYTHON
     └───VBA
