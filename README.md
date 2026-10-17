@@ -36,13 +36,16 @@ code-lab/
 
 ### 💻 Programming
 
-Proyectos y prácticas en distintos lenguajes y tecnologías.
+Proyectos y prácticas en distintos lenguajes de programación y tecnologías.
 
 Incluye:
 
-* Desarrollo web (HTML, CSS, Bootstrap)
-* Scripts y lógica de programación
-* Organización de proyectos
+- Desarrollo web (HTML, CSS, JavaScript y Bootstrap).
+- Programación orientada a objetos con Java.
+- Scripts, algoritmos y lógica de programación.
+- Bases de datos relacionales con MySQL.
+- Organización y gestión de proyectos.
+
 
 ---
 
