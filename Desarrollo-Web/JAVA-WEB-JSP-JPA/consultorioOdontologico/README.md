@@ -93,7 +93,7 @@ Este proyecto me permitió practicar y reforzar conocimientos sobre:
 Estudiante de Técnico Superior en Programación y egresado de Técnico Superior en Data Science.
 
 - GitHub: [SebaAri](https://github.com/SebaAri)
-- Portfolio: [Ver portfolio](https://sebaari.github.io/sebaari-dev/)
+- Portfolio: [Ver portfolio](https://sebaari.github.io)
 
 ---
 
